@@ -7,6 +7,8 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - ./../../code/project:/var/www/web
+      - ~/.ssh:/root/.ssh
+      - ~/.config/composer/auth.json:/root/.config/composer/auth.json
 
   webproject:
     image: nginx:latest

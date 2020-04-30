@@ -33,6 +33,7 @@ RUN yum-config-manager --enable extras && \
            php73-php-intl \
            php73-php \
            php73-php-pdo \
+           php73-php-pecl-imagick \
            nano
 
 

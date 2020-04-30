@@ -8,7 +8,7 @@ services:
     volumes:
       - ./../../code/project:/var/www/web
       - ~/.ssh:/root/.ssh
-      - ~/.config/composer/auth.json:/root/.config/composer/auth.json
+      - ~/.config/composer/auth.json:/.composer/auth.json
 
   webproject:
     image: nginx:latest

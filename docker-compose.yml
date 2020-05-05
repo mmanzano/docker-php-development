@@ -15,7 +15,7 @@ services:
     volumes:
       - ./../../code/project:/var/www/web
       - ./docker/web/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./storage/logs/nginx:/var/log/nginx
+      - ./docker-storage/logs/nginx:/var/log/nginx
     ports:
       - 8000:80
     depends_on:
@@ -24,12 +24,12 @@ services:
   dbproject:
     build: docker/db
     environment:
-      MYSQL_DATABASE: 'database'
-      MYSQL_USER: 'user'
-      MYSQL_PASSWORD: 'pass'
-      MYSQL_ROOT_PASSWORD: 'superpass'
+      MYSQL_DATABASE: 'project_homestead'
+      MYSQL_USER: 'homestead'
+      MYSQL_PASSWORD: 'secret'
+      MYSQL_ROOT_PASSWORD: 'secret'
     volumes:
-      - bddata:/var/lib/mysql
+      - ./docker-storage/bddata:/var/lib/mysql
 
 volumes:
   bddata:

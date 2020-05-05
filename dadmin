@@ -12,6 +12,9 @@ case "$1" in
   "rollback")
     docker-compose exec phpproject php artisan migrate:rollback
     ;;
+  "seed")
+    docker-compose exec phpproject php artisan db:seed
+    ;;
   "phpunit")
     docker-compose exec --user $(id -u) phpproject ./vendor/bin/phpunit
     ;;

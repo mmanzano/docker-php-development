@@ -30,7 +30,3 @@ services:
       MYSQL_ROOT_PASSWORD: 'secret'
     volumes:
       - ./docker-storage/bddata:/var/lib/mysql
-
-volumes:
-  bddata:
-    driver: local

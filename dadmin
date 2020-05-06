@@ -6,6 +6,9 @@ case "$1" in
   "cinstall")
     docker-compose exec --user $(id -u) phpproject composer install
     ;;
+  "key")
+    docker-compose exec --user $(id -u) phpproject php artisan key:generate
+    ;;
   "migrate")
     docker-compose exec phpproject php artisan migrate
     ;;
@@ -26,6 +29,10 @@ case "$1" in
     docker-compose exec --user $(id -u) phpproject php artisan config:clear
     docker-compose exec --user $(id -u) phpproject php artisan cache:clear
     docker-compose exec --user $(id -u) phpproject php artisan view:clear
+    ;;
+  "down")
+    sudo rm -rf docker-storage
+    docker-compose down
     ;;
   "destroy")
     docker-compose down

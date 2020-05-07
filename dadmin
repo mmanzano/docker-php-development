@@ -9,6 +9,9 @@ case "$1" in
   "key")
     docker-compose exec --user $(id -u) phpproject php artisan key:generate
     ;;
+  "tinker")
+    docker-compose exec phpproject php artisan tinker
+    ;;
   "migrate")
     docker-compose exec phpproject php artisan migrate
     ;;

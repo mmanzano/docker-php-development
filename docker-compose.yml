@@ -21,14 +21,27 @@ services:
     depends_on:
       - phpproject
 
-  dbproject:
-    build: docker/db
+  mysqlproject:
+    build: docker/mysql
     environment:
-      MYSQL_DATABASE: 'project_homestead'
+      MYSQL_DATABASE: 'homestead_project'
       MYSQL_USER: 'homestead'
       MYSQL_PASSWORD: 'secret'
       MYSQL_ROOT_PASSWORD: 'secret'
     ports:
       - 13306:3306
     volumes:
-      - ./docker-storage/bddata:/var/lib/mysql
+      - ./docker-storage/mysql:/var/lib/mysql
+
+  postgresqlproject:
+    build: docker/postgresql
+    restart: always
+    environment:
+      POSTGRES_DB: 'homestead_project'
+      POSTGRES_USER: 'homestead'
+      POSTGRES_PASSWORD: 'secret'
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 15432:5432
+    volumes:
+      - ./docker-storage/postgresql:/var/lib/postgresql/data/pgdata

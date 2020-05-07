@@ -17,34 +17,35 @@ RUN yum-config-manager --enable extras && \
     yum-config-manager --disable remi-php71 && \
     yum-config-manager --disable remi-php73 && \
     yum-config-manager --disable remi-php74 && \
-    yum-config-manager --enable  remi-php73 && \
+    yum-config-manager --enable  remi-php74 && \
 	yum -y install \
-           php73-php-fpm \
-           php73-php-json \
-           php73-php-xml \
-           php73-php-mysqli \
-           php73-php-mbstring \
-           php73-php-mysqlnd \
-           php73-php-gd \
-           php73-php-ldap \
-           php73-php-mcrypt \
-           php73-php-pecl-zip \
-           php73-php-soap \
-           php73-php-intl \
-           php73-php \
-           php73-php-pdo \
-           php73-php-pecl-imagick \
+           php74-php-fpm \
+           php74-php-json \
+           php74-php-xml \
+           php74-php-mysqli \
+           php74-php-pgsql \
+           php74-php-mbstring \
+           php74-php-mysqlnd \
+           php74-php-gd \
+           php74-php-ldap \
+           php74-php-mcrypt \
+           php74-php-pecl-zip \
+           php74-php-soap \
+           php74-php-intl \
+           php74-php \
+           php74-php-pdo \
+           php74-php-pecl-imagick \
            nano
 
 
 RUN mkdir -p /var/log/php-fpm
-RUN ln -s /opt/remi/php73/root/sbin/php-fpm /usr/sbin/php-fpm
-RUN ln -s /usr/bin/php73 /usr/bin/php
+RUN ln -s /opt/remi/php74/root/sbin/php-fpm /usr/sbin/php-fpm
+RUN ln -s /usr/bin/php74 /usr/bin/php
 RUN ln -sf /dev/stderr /var/log/php-fpm/error.log
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
     && php composer-setup.php --install-dir=. --filename=composer \
     && mv composer /usr/local/bin/
 
-COPY docker/php/www.conf /etc/opt/remi/php73/php-fpm.d/www.conf
+COPY docker/php/www.conf /etc/opt/remi/php74/php-fpm.d/www.conf
 CMD ["php-fpm", "-F"]

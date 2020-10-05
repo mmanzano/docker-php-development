@@ -12,6 +12,14 @@ case "$1" in
   "tinker")
     docker-compose exec phpproject php artisan tinker
     ;;
+  "uartisan")
+    shift
+    docker-compose exec --user $(id -u) phpproject php artisan $*
+    ;;
+  "artisan")
+    shift
+    docker-compose exec phpproject php artisan $*
+    ;;
   "migrate")
     docker-compose exec phpproject php artisan migrate
     ;;
@@ -22,7 +30,8 @@ case "$1" in
     docker-compose exec phpproject php artisan db:seed
     ;;
   "phpunit")
-    docker-compose exec --user $(id -u) phpproject ./vendor/bin/phpunit
+    shift
+    docker-compose exec --user $(id -u) phpproject ./vendor/bin/phpunit $*
     ;;
   "permissions")
     docker-compose exec phpproject chmod +777 -R storage/framework
